@@ -32,4 +32,6 @@ Route::get('home', [AuthController::class,'home'])->name('home');
 Route::get('logout', [AuthController::class,'logout'])->name('logout');
 Route::get('create', [InformationController::class,'create'])->name('create');
 Route::post('store', [InformationController::class,'store'])->name('store');
+Route::get('profile', [InformationController::class,'profile'])->name('profile');
+Route::delete('delete/{uid}', [InformationController::class,'delete'])->name('delete');
 });

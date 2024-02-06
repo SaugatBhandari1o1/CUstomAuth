@@ -18,7 +18,7 @@
           <a class="nav-link" href="{{ route('create') }}">Create</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{ route('store') }}">Store</a>
+          <a class="nav-link" href="{{route('profile')}}">Profile</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Home: {{Auth::user()->name}}</h1>
+<h3>Home: {{Auth::user()->name}}</h3>
 
 <div class="container">
     <div class="row">
@@ -14,20 +14,33 @@
                 <thead>
                     <tr>
                         <th>S.No</th>
+                        <th>Uid</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Status</th>
                         <th>Education</th>
+                        <th>Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($data['row'] as $key =>$row)
                     <tr>
                         <td>{{$key+1}}</td>
+                        <td>{{$row->uid}}</td>
                         <td>{{$row->name}}</td>
                         <td>{{$row->email}}</td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->education}}</td>
+                        <td style="display: flex;">
+                        <form action="" method="post">
+                            <button type="submit" class="btn btn-success">Edit</button>
+                        </form>
+                            <form action="{{ route('delete', ['uid' => $row->uid]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -63,6 +63,8 @@ class AuthController extends Controller
         return view('home', compact('data'));
     }
 
+    
+
     public function logout(){
         Session::flush();
         auth::logout();

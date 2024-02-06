@@ -10,6 +10,7 @@ class Information extends Model
     use HasFactory;
     public $timestamps = false;
     protected $table = "uploads";
+    protected $primaryKey = 'uid';
     
-    protected $fillable = ['name','email','status','education','user_id'];
+    protected $fillable = ['name','email','status','education','user_id','uid'];
 }
