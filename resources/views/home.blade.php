@@ -33,7 +33,7 @@
                         <td>{{$row->education}}</td>
                         <td style="display: flex;">
                         <form action="" method="post">
-                            <button type="submit" class="btn btn-success">Edit</button>
+                            <button type="submit" class="btn btn-success">Edit</button>``   
                         </form>
                             <form action="{{ route('delete', ['uid' => $row->uid]) }}" method="post">
                                 @csrf

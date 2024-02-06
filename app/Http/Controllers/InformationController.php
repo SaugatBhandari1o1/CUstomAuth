@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Information;
 use Illuminate\Support\Facades\Auth;
-use App\Models\delete;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class InformationController extends Controller
 {
@@ -38,6 +38,8 @@ class InformationController extends Controller
         }
     }
 
+    
+   
     public function delete($uid){
         $model = Information::where('uid', $uid)->first();
     
@@ -48,6 +50,7 @@ class InformationController extends Controller
             return redirect()->route('home')->with('error', 'Error: Record not Found.');
         }
     }
+
     
    
 }

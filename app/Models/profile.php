@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class delete extends Model
+class profile extends Model
 {
     use HasFactory;
-    public $timestamps = false;
 
-    protected $table = 'uploads';
+    protected $table = "users";
 
+    protected $fillable = ['name','password','img'];
 }

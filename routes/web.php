@@ -34,4 +34,5 @@ Route::get('create', [InformationController::class,'create'])->name('create');
 Route::post('store', [InformationController::class,'store'])->name('store');
 Route::get('profile', [InformationController::class,'profile'])->name('profile');
 Route::delete('delete/{uid}', [InformationController::class,'delete'])->name('delete');
-});
+Route::post('updatedProfile', [InformationController::class, 'updateProfile'])->name('updateProfile');
+}); 
