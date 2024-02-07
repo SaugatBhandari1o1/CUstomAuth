@@ -13,7 +13,7 @@
                 <p class="text-danger">{{Session::get('error')}}</p>
                 @endif
 
-                <form action="{{route('register') }}" method="post">
+                <form action="{{route('register') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="form-group">
@@ -42,6 +42,10 @@
                     <div class="form-group">
                         <label>Confirm Password</label>
                         <input type="text" name="password_confirmation" class="form-control" placeholder="Password Confirmation" />
+                    </div>
+                    <div class="form-group">
+                        <label>Profile Picture</label>
+                        <input type="file" id="image_data" name="image_data" >
                     </div>
                     <hr>
                     <div class="row">

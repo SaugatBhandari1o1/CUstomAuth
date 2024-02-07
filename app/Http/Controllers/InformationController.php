@@ -80,4 +80,9 @@ class InformationController extends Controller
             return redirect()->route('home')->with('error', 'Error: Record not Found.');
         }
     }
+
+    
+
+
+    
 }

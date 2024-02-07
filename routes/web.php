@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformationController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +39,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit/{uid}',[InformationController::class,'edit'])->name('edit');
     Route::post('/edit/{uid}/update',[InformationController::class,'update'])->name('update');
 
-    Route::post('updatedProfile', [InformationController::class, 'updateProfile'])->name('updateProfile');
+    // Route::get('profile',[UserController::class,'show'])->name('');
+    Route::post('updatedProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
 });

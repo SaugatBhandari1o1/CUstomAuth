@@ -2,7 +2,12 @@
 
 @section('content')
 
-<h3>Home: {{Auth::user()->name}}</h3>
+<!-- <h3>Home: {{Auth::user()->name}}</h3> -->
+@if (Auth::user()->image_data)
+<img src="{{asset('uploads/' .Auth::user()->image_data)}}" alt="Profile Image" width="100px">
+@else
+    <p>No Profile Image Found</p>
+@endif
 
 <div class="container">
     <div class="row">
@@ -48,5 +53,6 @@
         </div>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
