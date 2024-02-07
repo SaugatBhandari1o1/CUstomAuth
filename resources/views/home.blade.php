@@ -32,13 +32,13 @@
                         <td>{{$row->status}}</td>
                         <td>{{$row->education}}</td>
                         <td style="display: flex;">
-                        <form action="" method="post">
+                        <form action="{{route('edit',['uid'=>$row->uid]) }}" method="get">
                             <button type="submit" class="btn btn-success">Edit</button>``   
                         </form>
                             <form action="{{ route('delete', ['uid' => $row->uid]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                             </form>
                         </td>
                     </tr>

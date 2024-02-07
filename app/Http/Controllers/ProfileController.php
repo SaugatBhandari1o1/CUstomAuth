@@ -9,19 +9,17 @@ class ProfileController extends Controller
 {
     public function updateProfile(Request $request){
         $request->validate([
-            'name'=> 'required|string|max:255',
-            'password'=>'required|string|min:4',
-            'n_password'=>'nullable|string|min:4',
-            'profile'=>'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'name'=>'required',
+            'email'=> 'required|unique:users|email',
+            'password'=>'required|min:4|'
+
         ]);
 
         $user = Auth::user(); // Use Auth from the correct namespace
 
         $user->name = $request->input('name');
 
-        if($request->filled('n_password')){
-            $user->password = bcrypt($request->input('n_password'));
-        }
+        
 
         if ($request->hasFile('profile')) {
             $profileImage = $request->file('profile');
