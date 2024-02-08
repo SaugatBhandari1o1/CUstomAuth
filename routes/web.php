@@ -40,5 +40,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/edit/{uid}/update',[InformationController::class,'update'])->name('update');
 
     // Route::get('profile',[UserController::class,'show'])->name('');
-    Route::post('updatedProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
+    Route::post('update', [ProfileController::class, 'update'])->name('update');
 });
