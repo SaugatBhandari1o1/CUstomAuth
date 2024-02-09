@@ -32,6 +32,7 @@ class ProfileController extends Controller
             $user->name = $request->name;
         }
 
+
         //Update password
         if ($request->filled('new_password')) {
             $user->password = Hash::make($request->new_password);
@@ -49,14 +50,14 @@ class ProfileController extends Controller
                 $image->move(public_path('uploads/'), $imageName);
                 $user->image_data = $imageName;
             }
-
-            // dd($user->name);
-
-
-            /** @var \App\Models\User $user  */
-            $user->save();
-
-            return redirect()->back()->with('success', 'Profile updated');
         }
+
+        // dd($user->name);
+
+
+        /** @var \App\Models\User $user  */
+        $user->save();
+
+        return redirect()->back()->with('success', 'Profile updated');
     }
 }
