@@ -13,5 +13,5 @@ class Upload extends Model
     protected $primaryKey = "uid";
     protected $table = "uploads";
 
-    protected $fillable = ['name','email','status','education'];
+    protected $fillable = ['name','email','status','education','document'];
 }

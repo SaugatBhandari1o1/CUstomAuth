@@ -36,6 +36,16 @@ class InformationController extends Controller
         $model->status = $request->status ? true : false;
         $model->education = $request->education;
 
+        //file upload
+        if ($request->hasFile('document')) {
+            $file = $request->file('document');
+
+            $fileName = $file->hashName();
+            $filePath = $file->storeAs('pdfs', $fileName);
+
+            $model->document = $fileName;
+        }
+
         $success = $model->save();
         if ($success) {
             return redirect('home');
@@ -55,9 +65,10 @@ class InformationController extends Controller
 
 
 
-    public function update(Request $request, $uid){
+    public function update(Request $request, $uid)
+    {
 
-        $upload = Upload::where('uid', $uid )->first();
+        $upload = Upload::where('uid', $uid)->first();
 
         $upload->name = $request->input('name');
         $upload->email = $request->input('email');
@@ -81,8 +92,20 @@ class InformationController extends Controller
         }
     }
 
-    
+    public function download($uid)
+    {
+        $upload = Upload::where('uid',$uid)->first();
 
+        if(!$upload || !$upload->document){
+            return redirect()->back()->with('error','Document Not Found.');
+        }
 
-    
+        $documentContent = $upload->document;
+
+        $headers = [
+            'Content-Type' => 'application/pdf', // Adjust the content type based on your document type
+            'Content-Disposition' => 'attachment; filename="' . $upload->document_name . '"', // Adjust the filename as needed
+        ];
+        return response($documentContent, 200 , $headers);
+    }
 }

@@ -41,4 +41,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit/{uid}/update', [InformationController::class, 'update'])->name('update');
 
     Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/download/{uid}', [InformationController::class,'download'])->name('download');
 });

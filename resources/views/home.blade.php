@@ -24,6 +24,7 @@
                         <th>Email</th>
                         <th>Status</th>
                         <th>Education</th>
+                        <th>Document</th>
                         <th>Edit/Delete</th>
                     </tr>
                 </thead>
@@ -36,6 +37,13 @@
                         <td>{{$row->email}}</td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->education}}</td>
+                        <td>
+                            @if ($row->document)
+                            <a href="" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
+                            @else
+                            No Document Available
+                            @endif
+                        </td>
                         <td style="display: flex;">
                         <form action="{{route('edit',['uid'=>$row->uid]) }}" method="get">
                             <button type="submit" class="btn btn-success">Edit</button>``   
