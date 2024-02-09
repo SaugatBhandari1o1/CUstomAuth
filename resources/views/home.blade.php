@@ -3,11 +3,11 @@
 @section('content')
 
 <!-- <h3>Home: {{Auth::user()->name}}</h3> -->
-@if (Auth::user()->image_data)
+<!-- @if (Auth::user()->image_data)
 <img src="{{asset('uploads/' .Auth::user()->image_data)}}" alt="Profile Image" width="100px">
 @else
     <p>No Profile Image Found</p>
-@endif
+@endif -->
 
 <div class="container">
     <div class="row">
