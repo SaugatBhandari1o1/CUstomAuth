@@ -20,12 +20,13 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
-    Route::post('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login']);
 
     Route::get('register', [AuthController::class, 'register_view'])->name('register');
-    Route::post('register', [AuthController::class, 'register'])->name('register')->middleware('throttle:2,1');
+    Route::post('register', [AuthController::class, 'register'])->middleware('throttle:2,1');
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -36,9 +37,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('profile', [InformationController::class, 'profile'])->name('profile');
     Route::delete('delete/{uid}', [InformationController::class, 'delete'])->name('delete');
-    Route::get('edit/{uid}',[InformationController::class,'edit'])->name('edit');
-    Route::post('/edit/{uid}/update',[InformationController::class,'update'])->name('update');
+    Route::get('edit/{uid}', [InformationController::class, 'edit'])->name('edit');
+    Route::post('edit/{uid}/update', [InformationController::class, 'update'])->name('update');
 
-    // Route::get('profile',[UserController::class,'show'])->name('');
-    Route::post('update', [ProfileController::class, 'update'])->name('update');
+    Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
