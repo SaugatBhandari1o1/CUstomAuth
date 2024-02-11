@@ -1,71 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
 @extends('layouts.app')
-@section('content')
 
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <h3>Create</h3>
-                <div class="card">
-                    <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header bg-dark text-center">
+                    <h3 class="card-title text-light fw-bold">Create</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="mt-2 mb-2">
+                        <div class="mb-3">
                             <label for="name" class="form-label">Name</label>
-                            <input type="text" name="name" id="name" placeholder="Enter Your Name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" required>
                         </div>
-                        <div class="mt-2 mb-2">
+                        <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" name="email" id="email" placeholder="Enter Emails" class="form-control">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" required>
                         </div>
-                        <div class="mt-2 mb-2">
+                        <div class="mb-3">
                             <label for="education" class="form-label">Education</label>
-                            <select name="education" id="education" class="form-control">
-                                <option value="" selected disabled>Enter Your Education Level</option>
+                            <select name="education" id="education" class="form-select" required>
+                                <option value="" selected disabled>Select Education Level</option>
                                 <option value="master">Master</option>
                                 <option value="bachelor">Bachelor</option>
                                 <option value="high_school">High School</option>
                                 <option value="school">School</option>
                             </select>
                         </div>
-                        <div class="mt-2 mb-2">
+                        <div class="mb-3">
                             <label for="document" class="form-label">Document</label>
                             <div class="input-group">
-                                <input type="file" name="document" id="document" class="form-control" aria-describedby="documentLabel" accept=".pdf, .docx, .doc" onchange="displayFileName(this)">
-                                <label class="input-group-text" for="document" id="documentLabel">Select</label>
+                                <input type="file" name="document" id="document" class="form-control" accept=".pdf, .docx, .doc" onchange="displayFileName(this)" required>
+                                <label class="input-group-text" for="document">Choose file</label>
                             </div>
+                            <div id="documentLabel" class="form-text">No file chosen</div>
                         </div>
-                        <div class="mt-2 mb-2">
-                            <label for="status" class="form-label">Status</label>
-                            <input type="checkbox" name="status" id="status" class="form-control-check ml-4">
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" name="status" id="status" class="form-check-input">
+                            <label for="status" class="form-check-label">Status</label>
                         </div>
                         <hr>
-                        <div class="mt-2 mb-2">
-                            <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                        <div class="mb-3">
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</div>
 
-    <script>
-        function displayFileName(input){
-            const fileName = input.files[0].name;
-            document.getElementById('documentLabel').textContent = fileName;
-        }
-    </script>
-</body>
+<script>
+    function displayFileName(input) {
+        const fileName = input.files[0].name;
+        document.getElementById('documentLabel').textContent = fileName;
+    }
+</script>
 @endsection
-
-</html>
