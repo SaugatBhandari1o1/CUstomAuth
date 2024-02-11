@@ -120,6 +120,7 @@ class InformationController extends Controller
                 ];
 
                 return response()->file($filePath, $headers);
+
             } else{
                 return redirect()->back()->with('error','File Not Found');
             }
