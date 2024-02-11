@@ -48,7 +48,7 @@ class AuthController extends Controller
         if($request ->hasFile('image_data') ){
             $img = $request->image_data;
             $img_name = time() .'.'. $img->getClientOriginalExtension();
-            $destinationPath = 'public_path'('uploads/');
+            $destinationPath = 'public_path'('uploads/profile/');
             $img->move($destinationPath, $img_name);
 
         }
