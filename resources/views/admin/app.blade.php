@@ -12,7 +12,7 @@
 @include('layouts.adminNav')
 
 
-@yeild('content')
+@yield('content')
 
 
 

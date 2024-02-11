@@ -35,7 +35,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 
-Route::get('admin', [InformationController  ::class,'admin'])->name('admin');
+Route::get('admin', [AdminController  ::class,'admin'])->name('admin');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
