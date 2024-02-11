@@ -40,10 +40,13 @@ class InformationController extends Controller
         if ($request->hasFile('document')) {
             $file = $request->file('document');
 
-            $fileName = $file->hashName();
-            $filePath = $file->storeAs('pdfs', $fileName);
+            $fileName = time().'.'.$file->getClientOriginalName();
+            $file->move(public_path('uploads/document/'), $fileName);
+            $model->document = $fileName;   
+            // $fileName = $file->hashName();
+            // $filePath = $file->storeAs('pdfs', $fileName);
 
-            $model->document = $fileName;
+            // $model->document = $fileName;
         }
 
         $success = $model->save();
@@ -94,18 +97,24 @@ class InformationController extends Controller
 
     public function download($uid)
     {
-        $upload = Upload::where('uid',$uid)->first();
+        $model = Information::findOrFail($uid);
 
-        if(!$upload || !$upload->document){
-            return redirect()->back()->with('error','Document Not Found.');
+        if($model->document){
+            $fileName= $model->document;
+            $filePath = public_path('uploads/document/' .$fileName);
+
+            if(file_exists($filePath)){
+                $headers=[
+                'Content-Type' => 'application/pdf',
+                'Content_Disposition' => 'attachment; filename ="' .$fileName .'"',
+                ];
+
+                return response()->file($filePath, $headers);
+            } else{
+                return redirect()->back()->with('error','File Not Found');
+            }
+        }else {
+            return redirect()->back()->with('error','File Not Found in the Database');
         }
-
-        $documentContent = $upload->document;
-
-        $headers = [
-            'Content-Type' => 'application/pdf', // Adjust the content type based on your document type
-            'Content-Disposition' => 'attachment; filename="' . $upload->document_name . '"', // Adjust the filename as needed
-        ];
-        return response($documentContent, 200 , $headers);
     }
 }

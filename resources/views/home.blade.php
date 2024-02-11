@@ -9,14 +9,15 @@
     <p>No Profile Image Found</p>
 @endif -->
 
+
 <div class="container">
     <div class="row">
         <div class="col-12">
             <h3>Information Table</h3>
             <a href="{{route('create')}}" class="btn btn-success btn-sm mt-2">Add New</a>
 
-            <table class="table">
-                <thead>
+            <table class="table table-striped mt-3">
+                <thead class="thead-dark">
                     <tr>
                         <th>S.No</th>
                         <th>Uid</th>
@@ -25,7 +26,7 @@
                         <th>Status</th>
                         <th>Education</th>
                         <th>Document</th>
-                        <th>Edit/Delete</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,17 +38,17 @@
                         <td>{{$row->email}}</td>
                         <td>{{$row->status}}</td>
                         <td>{{$row->education}}</td>
+                       
                         <td>
-                            @if ($row->document)
-                            <a href="" class="btn btn-primary btn-sm" target="_blank">Download PDF</a>
-                            @else
-                            No Document Available
-                            @endif
+                            <form action="{{route('download',['uid'=>$row->uid])}}" method="get">
+                                <button type="submit" class="btn btn-primary">View</button>
+                            </form>
                         </td>
                         <td style="display: flex;">
-                        <form action="{{route('edit',['uid'=>$row->uid]) }}" method="get">
-                            <button type="submit" class="btn btn-success">Edit</button>``   
-                        </form>
+                            <form action="{{route('edit',['uid'=>$row->uid]) }}" method="get">
+                                <button type="submit" class="btn btn-success">Edit</button>``
+                            </form>
+                        
                             <form action="{{ route('delete', ['uid' => $row->uid]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
