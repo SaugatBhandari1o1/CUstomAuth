@@ -6,9 +6,7 @@
     cursor: pointer;
 }
 
-.input-group input[type="file"] + label.input-group-text::after {
-    content: 'Browse';
-}
+
 
 .input-group input[type="file"]:focus + label.input-group-text {
     box-shadow: 0 0 0 .25rem rgba(0, 123, 255, .25);

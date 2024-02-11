@@ -31,6 +31,22 @@
                             <input type="checkbox" name="status" id="status" class="form-control-check ml-4" {{ $upload->status ? 'checked' : '' }}>
                         </div>
 
+                        <div class="mb-3">
+                            <label for="document" class="form-label">Current Document</label>
+                            @if ($upload->document)
+                            <p>{{$upload->document}}</p>
+                            <a href="{{asset('uploads/document/' . $upload->document)}}" target="_blank" class="btn btn-primary">View</a>
+
+                            @else
+                            <p>No document Upload</p>
+                            @endif
+                        </div>
+                        <div class="mt-2 mb-2">
+                            <label for="document" class="form-label">Upload New Document</label>
+                            <input type="file" name="document" id="document" class="form-control" accept=".pdf, .docx, .doc">
+                        </div>
+                        <hr>
+
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>

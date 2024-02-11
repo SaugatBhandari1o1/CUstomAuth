@@ -39,8 +39,8 @@
                         <div class="mt-2 mb-2">
                             <label for="document" class="form-label">Document</label>
                             <div class="input-group">
-                                <input type="file" name="document" id="document" class="form-control" aria-describedby="document" accept=".pdf, .docx, .doc">
-                                <label class="input-group-text" for="document" id="document"></label>
+                                <input type="file" name="document" id="document" class="form-control" aria-describedby="documentLabel" accept=".pdf, .docx, .doc" onchange="displayFileName(this)">
+                                <label class="input-group-text" for="document" id="documentLabel">Select</label>
                             </div>
                         </div>
                         <div class="mt-2 mb-2">
@@ -58,6 +58,13 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script>
+        function displayFileName(input){
+            const fileName = input.files[0].name;
+            document.getElementById('documentLabel').textContent = fileName;
+        }
+    </script>
 </body>
 @endsection
 

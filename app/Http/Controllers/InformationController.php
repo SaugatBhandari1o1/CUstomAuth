@@ -43,10 +43,6 @@ class InformationController extends Controller
             $fileName = time().'.'.$file->getClientOriginalName();
             $file->move(public_path('uploads/document/'), $fileName);
             $model->document = $fileName;   
-            // $fileName = $file->hashName();
-            // $filePath = $file->storeAs('pdfs', $fileName);
-
-            // $model->document = $fileName;
         }
 
         $success = $model->save();
@@ -77,6 +73,20 @@ class InformationController extends Controller
         $upload->email = $request->input('email');
         $upload->status = $request->status ? true : false;
         $upload->education = $request->input('education');
+
+        if($request->hasFile('document')){
+            $file = $request->file('document');
+
+            if($upload->document){
+                unlink(public_path('uploads/document/'. $upload->document));
+            }
+
+            $file= $request->file('document');
+            $fileName= time().'.'.$file->getClientOriginalName();
+            $file->move(public_path('uploads/document/'), $fileName);
+            $upload->document = $fileName;
+            
+        }
 
         $success = $upload->save();
         if ($success) {

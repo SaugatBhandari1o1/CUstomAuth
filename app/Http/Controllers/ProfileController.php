@@ -39,7 +39,7 @@ class ProfileController extends Controller
         }
 
         if ($user->image_data && $request->hasFile('image_data')) {
-            $oldImageData = public_path('uploads/') . $user->image_data;
+            $oldImageData = public_path('uploads/profile/') . $user->image_data;
             if (file_exists($oldImageData)) {
                 unlink($oldImageData);
             }
@@ -47,7 +47,7 @@ class ProfileController extends Controller
             if ($request->hasFile('image_data')) {
                 $image = $request->file('image_data');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('uploads/'), $imageName);
+                $image->move(public_path('uploads/profile/'), $imageName);
                 $user->image_data = $imageName;
             }
         }

@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="{{ url('/home') }}">
         @if (Auth::user()->image_data)
-        <img src="{{asset('uploads/' .Auth::user()->image_data)}}" alt="Profile Image" width="100%" height="70px" style="border-radius: 50%;">
+        <img src="{{asset('uploads/profile/' .Auth::user()->image_data)}}" alt="Profile Image" width="100%" height="70px" style="border-radius: 50%;">
         @else
         <p>No Profile Image Found</p>
         @endif
