@@ -21,7 +21,6 @@ class InformationController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
 
@@ -43,6 +42,8 @@ class InformationController extends Controller
             $fileName = time().'.'.$file->getClientOriginalName();
             $file->move(public_path('uploads/document/'), $fileName);
             $model->document = $fileName;   
+        }else{
+            $model->document = null;
         }
 
         $success = $model->save();
@@ -98,6 +99,14 @@ class InformationController extends Controller
         $model = Information::where('uid', $uid)->first();
 
         if ($model) {
+
+            if($model->document){
+                $filePath = public_path('uploads/document/' .$model->document);
+                if(file_exists($filePath)){
+                    unlink($filePath);
+                }
+            }
+
             $model->delete();
             return redirect()->route('home')->with('success', 'Record deleted Successfully.');
         } else {

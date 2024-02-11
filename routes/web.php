@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformationController;
@@ -25,10 +26,16 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
 
+
+    Route::get('admin_login' , [AdminController::class,'index'])->name('admin_login');
+    Route::post('admin_login', [AdminController::class,'admin_login']);
+
     Route::get('register', [AuthController::class, 'register_view'])->name('register');
     Route::post('register', [AuthController::class, 'register'])->middleware('throttle:2,1');
 });
 
+
+Route::get('admin', [InformationController  ::class,'admin'])->name('admin');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

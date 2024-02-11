@@ -40,9 +40,13 @@
                         <td>{{$row->education}}</td>
                        
                         <td>
-                            <form action="{{route('download',['uid'=>$row->uid])}}" method="get">
+                            @if($row->document)
+                            <form action="{{route('download',['uid'=>$row->uid])}}" method="get" target="_blank">
                                 <button type="submit" class="btn btn-primary">View</button>
                             </form>
+                            @else
+                            <p>No Document Present</p>
+                            @endif
                         </td>
                         <td style="display: flex;">
                             <form action="{{route('edit',['uid'=>$row->uid]) }}" method="get">
