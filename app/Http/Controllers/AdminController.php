@@ -40,17 +40,7 @@ class AdminController extends Controller
             return redirect()->back()->with('error','Invalid Credentials');
         }
 
-        // $validated = auth()->attempt([
-        //     'email'=> $request->email,
-        //     'password'=> $request->password,
-        //     'is_admin'=> 1,
-        // ], $request->password);
-
-        // if($validated){
-        //     return redirect()->route('dashboard')->with('success','Login Successful');
-        // }else{
-        //     return redirect()->back()->with('error','Invalid Credentials');
-        // }
+        
     }
 
     public function login(Request $request){

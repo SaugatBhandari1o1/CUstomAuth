@@ -36,8 +36,8 @@ Route::group(['middleware' => 'guest'], function () {
 
 
 Route::get('admin/admin', [AdminController  ::class,'index'])->name('index');
-Route::get('admin/a_login',[AdminController::class,'a_loginView'])->name('a_loginView');
-Route::post('admin/a_login', [AdminController::class,'postLogin'])->name('postLogin');
+Route::get('admin/',[AdminController::class,'a_loginView'])->name('a_loginView');
+Route::post('admin/', [AdminController::class,'postLogin'])->name('postLogin');
 Route::get('admin/dashboard', [AdminController::class,'dashboard'])->name('dashboard');
 Route::get('admin/logout',[AdminController::class,'a_logout'])->name('a_logout');
 
