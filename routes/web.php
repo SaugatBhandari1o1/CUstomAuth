@@ -45,6 +45,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::post('admin/', [AdminController::class, 'postLogin'])->name('postLogin');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('admin/logout', [AdminController::class, 'a_logout'])->name('a_logout');
+    Route::get('admin/document', [UserController::class,'document'])->name('users.document');
 });
 
 

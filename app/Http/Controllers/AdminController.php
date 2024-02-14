@@ -10,33 +10,17 @@ use Carbon\Carbon;
 
 class AdminController extends Controller
 {
-    // public function index(){
-    //     $users = User::all();
-    //     return view('admin.users.index', compact('users'));
-    // }
-
-    // public function dashboard(){
-    //     $userCount = Session::get('userCount', 0);
-
-    //     $data=[
-    //         'title'=>'dashboard',
-    //         'userCount'=>$userCount
-    //     ];
-    //     return view('admin.dashboard',$data);
-    // }
+   
     public function dashboard()
     {
         $this->month();
-        // Retrieve the user count from the session
         $userCount = Session::get('userCount', 0);
 
-        // Prepare data to pass to the view
         $data = [
             'title' => 'Dashboard',
             'userCount' => $userCount,
         ];
 
-        // Return the dashboard view with the user count
         return view('admin.dashboard', $data);
     }
 
@@ -44,7 +28,6 @@ class AdminController extends Controller
     public function month()
     {
 
-        // return redirect()->route('dashboard',['userCount' => session('userCount')]);
         $currentMonth = Carbon::now()->month;
         $currentYear = Carbon::now()->year;
 
