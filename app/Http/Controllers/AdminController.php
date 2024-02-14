@@ -7,11 +7,42 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index(){
-        return view("admin.a_login");
+        return view("/admin/admin");
     }
 
     public function admin(){
         return view("/admin/admin");
+    }
+
+    public function a_loginView(){
+        return view("/admin/a_login");
+    }
+
+    public function postLogin(Request $request){
+        $request->validate([
+            'email'=>'required|email',
+            'password'=> 'required',
+        ]);
+
+        $credentials= $request->only('email','password');
+
+        if(auth()->attempt($credentials)&&auth()->user()->is_admin){
+            return redirect()->route('dashboard')->with('success','Login Successful');
+        }else{
+            return redirect()->back()->with('error','Invalid Credentials');
+        }
+
+        // $validated = auth()->attempt([
+        //     'email'=> $request->email,
+        //     'password'=> $request->password,
+        //     'is_admin'=> 1,
+        // ], $request->password);
+
+        // if($validated){
+        //     return redirect()->route('dashboard')->with('success','Login Successful');
+        // }else{
+        //     return redirect()->back()->with('error','Invalid Credentials');
+        // }
     }
 
     public function login(Request $request){

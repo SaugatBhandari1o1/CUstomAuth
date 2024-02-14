@@ -27,15 +27,20 @@ Route::group(['middleware' => 'guest'], function () {
     Route::post('login', [AuthController::class, 'login']);
 
 
-    Route::get('admin_login' , [AdminController::class,'index'])->name('admin_login');
-    Route::post('admin_login', [AdminController::class,'admin_login']);
+    // Route::get('admin_login' , [AdminController::class,'index'])->name('admin_login');
+    // Route::post('admin_login', [AdminController::class,'admin_login']);
 
     Route::get('register', [AuthController::class, 'register_view'])->name('register');
     Route::post('register', [AuthController::class, 'register'])->middleware('throttle:2,1');
 });
 
 
-Route::get('admin', [AdminController  ::class,'admin'])->name('admin');
+Route::get('admin/admin', [AdminController  ::class,'index'])->name('index');
+Route::get('admin/a_login',[AdminController::class,'a_loginView'])->name('a_loginView');
+Route::post('admin/a_login', [AdminController::class,'postLogin'])->name('postLogin');
+
+
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
