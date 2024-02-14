@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class AdminController extends Controller
 {
-    public function index(){
-        return view("/admin/admin");
-    }
+    // public function index(){
+    //     $users = User::all();
+    //     return view('admin.users.index', compact('users'));
+    // }
 
     public function dashboard(){
         $data=[
@@ -43,10 +45,7 @@ class AdminController extends Controller
         
     }
 
-    public function login(Request $request){
 
-        $credentials = $request->validate([]);
-    }
 
 
 }

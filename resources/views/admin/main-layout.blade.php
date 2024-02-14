@@ -29,9 +29,6 @@
 
                   @yield('body')
 
-
-                    
-
                 </div>
                 <!-- /.container-fluid -->
 

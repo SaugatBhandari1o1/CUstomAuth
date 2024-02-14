@@ -40,7 +40,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 
 Route::group(['middleware' => 'admin_auth'], function () {
-    Route::get('admin/admin', [AdminController::class, 'index'])->name('index');
+    Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
     Route::get('admin/', [AdminController::class, 'a_loginView'])->name('a_loginView');
     Route::post('admin/', [AdminController::class, 'postLogin'])->name('postLogin');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
