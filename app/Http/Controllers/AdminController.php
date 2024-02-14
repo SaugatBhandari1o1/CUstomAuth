@@ -19,7 +19,7 @@ class AdminController extends Controller
 
     public function a_logout(){
         auth()->logout();
-        return redirect('admin/a_login')->with('success','You Have been Logged Out');
+        return redirect('/admin')->with('success','You Have been Logged Out');
     }
 
     public function a_loginView(){

@@ -16,11 +16,11 @@ class AdminAuth
     public function handle(Request $request, Closure $next): Response
     {
         if(auth()->check()){
-            if(!auth()->user()->is_admin    ){
-                return redirect()->route('getLogin')->with('error','You must be an admin to access this page');
+            if(!auth()->user()->is_admin){
+                return redirect()->route('login')->with('error','You must be an admin to access this page');
             }
         }else{
-            return redirect()->route('getLogin')->with('error','You have to be logged in to access this page');
+            return redirect()->route('login')->with('error','You have to be logged in to access this page');
         }
         return $next($request);
     }

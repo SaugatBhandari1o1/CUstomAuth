@@ -25,7 +25,9 @@ Route::get('/', function () {
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
-
+    Route::get('/', function () {
+        return view('auth.login');
+    });
 
     // Route::get('admin_login' , [AdminController::class,'index'])->name('admin_login');
     // Route::post('admin_login', [AdminController::class,'admin_login']);
@@ -35,15 +37,24 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 
-Route::get('admin/admin', [AdminController  ::class,'index'])->name('index');
-Route::get('admin/',[AdminController::class,'a_loginView'])->name('a_loginView');
-Route::post('admin/', [AdminController::class,'postLogin'])->name('postLogin');
-Route::get('admin/dashboard', [AdminController::class,'dashboard'])->name('dashboard');
-Route::get('admin/logout',[AdminController::class,'a_logout'])->name('a_logout');
+
+
+Route::group(['middleware' => 'admin_auth'], function () {
+    Route::get('admin/admin', [AdminController::class, 'index'])->name('index');
+    Route::get('admin/', [AdminController::class, 'a_loginView'])->name('a_loginView');
+    Route::post('admin/', [AdminController::class, 'postLogin'])->name('postLogin');
+    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin/logout', [AdminController::class, 'a_logout'])->name('a_logout');
+});
 
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::get('/', function () {
+        return view('home');
+    });
+
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('create', [InformationController::class, 'create'])->name('create');
@@ -56,5 +67,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('download/{uid}', [InformationController::class,'download'])->name('download');
+    Route::get('download/{uid}', [InformationController::class, 'download'])->name('download');
 });
