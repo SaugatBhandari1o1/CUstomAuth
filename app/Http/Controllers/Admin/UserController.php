@@ -37,19 +37,35 @@ class UserController extends Controller
     }
 
     public function viewAllDocuments(){
-       $documents = Upload::wherenotNull('document')->with('user')->get();
+       $documents = Upload::wherenotNull('document')->with('user')->with('item')->get();
 
        return view('admin.users.document', compact('documents'));
     }
 
-    public function viewDocument($fileName){
-        $filePath = public_path('uploads/documents/'.$fileName);
+    public function viewDocument($document){
 
-        if(file_exists($filePath)){
-            return response()->file($filePath);
-        } else {
-            return redirect()->back()->with('error','Documents Not Found');
+        // dd($document);
+        // $upload = Upload::findOrFail($document);
+        $upload = Upload::where('document', $document)->first();
+
+        if($upload->document){
+            $fileName = $upload->document;
+            $filePath = public_path('uploads/document/' .$fileName);
+
+            if(file_exists($filePath)){
+                $headers=[
+                    'Content-Type' => 'application/pdf',
+                    'Content_Disposition' => 'attachment; filename ="' .$fileName .'"',
+                ];
+                return response()->file($filePath, $headers);
+            }else{
+                return redirect()->back()->with('error','Document Not Found');
+            }
+        }else {
+            return redirect()->back()->with('error','File does not exist in Database');
         }
+
+       
     }
 
 }

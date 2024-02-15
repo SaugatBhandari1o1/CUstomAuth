@@ -13,6 +13,10 @@ class Upload extends Model
     {
         return $this->belongsTo(User::class, 'user_id','id');
     }
+    public function item()
+    {
+        return $this->belongsTo(Upload::class, 'uid','uid');
+    }
 
     protected $primaryKey = "uid";
     protected $table = "uploads";

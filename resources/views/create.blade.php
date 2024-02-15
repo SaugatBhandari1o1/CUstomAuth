@@ -32,7 +32,7 @@
                         <div class="mb-3">
                             <label for="document" class="form-label">Document</label>
                             <div class="input-group">
-                                <input type="file" name="document" id="document" class="form-control" accept=".pdf, .docx, .doc" onchange="displayFileName(this)" required>
+                                <input type="file" name="document" id="document" class="form-control" accept=".pdf" onchange="displayFileName(this)" required>
                                 <label class="input-group-text" for="document">Choose file</label>
                             </div>
                             <div id="documentLabel" class="form-text">No file chosen</div>

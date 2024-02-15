@@ -48,7 +48,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/logout', [AdminController::class, 'a_logout'])->name('a_logout');
     // Route::get('admin/document', [UserController::class, 'document'])->name('users.document');
     Route::get('admin/document', [UserController::class,'viewAllDocuments'])->name('admin.viewAllDocuments');
-    Route::get('admin/document/{fileName}', [UserController::class,'viewDocument'])->name('admin.viewDocument');
+    Route::get('admin/document/{document}', [UserController::class,'viewDocument'])->name('admin.viewDocument');
 
 });
 

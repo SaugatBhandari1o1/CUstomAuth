@@ -65,6 +65,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>User Name</th>
+                        <th>Upload Name</th>
                         <th>Document Name</th>
                         <th>View</th>
                     </tr>
@@ -73,11 +74,11 @@
                     @foreach($documents as $document)
                     <tr>
                         <td>{{$document->user->name ?? 'Unknown User'}}</td>
+                        <td>{{$document->item->name ?? 'Unknown Entry'}}</td>
                         <td>{{$document->document}}</td>
                         <td>
                             @if($document->document)
-                            <a href="{{ route('admin.viewDocument', ['fileName' => $document->document]) }}" target="_blank" class="btn btn-success">
-
+                            <a href="{{ route('admin.viewDocument', ['document' => $document->document]) }}" target="_blank" class="btn btn-success">
                                 View
                             </a>
                             @else
