@@ -18,9 +18,10 @@ use App\Http\Controllers\admin\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+// Auth::routes(['verify'=>true]);
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'index'])->name('login');
@@ -41,20 +42,24 @@ Route::group(['middleware' => 'guest'], function () {
 
 Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('admin/', [AdminController::class, 'a_loginView'])->name('a_loginView');
+    Route::get('admin/', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::post('admin/', [AdminController::class, 'postLogin'])->name('postLogin');
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('admin/logout', [AdminController::class, 'a_logout'])->name('a_logout');
-    Route::get('admin/document', [UserController::class,'document'])->name('users.document');
+    // Route::get('admin/document', [UserController::class, 'document'])->name('users.document');
+    Route::get('admin/document', [UserController::class,'viewAllDocuments'])->name('admin.viewAllDocuments');
+    Route::get('admin/document/{fileName}', [UserController::class,'viewDocument'])->name('admin.viewDocument');
+
 });
 
 
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', function () {
-        return view('home');
-    });
+    // Route::get('/', function () {
+    //     return view('home');
+    // });
+    Route::get('/', [AuthController::class,'home'])->name('home');
 
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

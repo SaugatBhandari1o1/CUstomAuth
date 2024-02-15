@@ -8,9 +8,14 @@
         <div class="col-md-4 offset-md-4">
             <div class="card form-holder">
                 <h1>Register</h1>
-
-                @if (Session::has('error'))
-                <p class="text-danger">{{Session::get('error')}}</p>
+                @if($errors->any())
+                <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+                </div>
                 @endif
 
                 <form action="{{route('register') }}" method="post" enctype="multipart/form-data">
@@ -45,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label>Profile Picture</label>
-                        <input type="file" id="image_data" name="image_data" >
+                        <input type="file" id="image_data" name="image_data" accept=".jpg, .png, .jpeg">
                     </div>
                     <hr>
                     <div class="row">

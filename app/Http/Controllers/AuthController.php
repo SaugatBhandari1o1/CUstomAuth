@@ -41,7 +41,7 @@ class AuthController extends Controller
         // dd($request->all());
         $request->validate([
             'name' => 'required',
-            'email' => 'required|unique:users|email',
+            'email' => 'required|unique:users|email|unique:users',
             'password' => 'required|confirmed',
             'image_data' =>'required|image',
         ]);
@@ -52,7 +52,7 @@ class AuthController extends Controller
             $img->move($destinationPath, $img_name);
 
         }
-
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -75,6 +75,7 @@ class AuthController extends Controller
         $data['row'] = Information::where('user_id', $user_id)->get();
         // $data = [];
         // $data['row'] = DB::table('uploads')->get();
+        // return view('home', ['data'=>$data]);
         return view('home', compact('data'));
     }
 

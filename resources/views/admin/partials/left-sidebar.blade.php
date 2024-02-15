@@ -94,7 +94,7 @@ $current_route=request()->route()->getName();
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a href="{{route('users.document')}}" class="nav-link {{$current_route=='users.document'?'active':''}}">
+        <a href="{{route('admin.viewAllDocuments')}}" class="nav-link {{$current_route=='admin.viewAllDocuments'?'active':''}}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Document</span></a>
     </li>
