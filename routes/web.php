@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\LoginCustomizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +50,8 @@ Route::group(['middleware' => 'admin_auth'], function () {
     // Route::get('admin/document', [UserController::class, 'document'])->name('users.document');
     Route::get('admin/document', [UserController::class,'viewAllDocuments'])->name('admin.viewAllDocuments');
     Route::get('admin/document/{document}', [UserController::class,'viewDocument'])->name('admin.viewDocument');
-    Route::get('/admin/login-customization', [AdminController::class,'loginCustomization'])->name('login.customization.form');
-    Route::post('/admin/login-customization/updaet', [AdminController::class,'loginCustomUpdate'])->name('login.customization.update');
+    Route::get('/admin/login-customization', [LoginCustomizationController::class,'loginCustomization'])->name('login.customization.form');
+    Route::post('/admin/login-customization/updaet', [LoginCustomizationController::class,'loginCustomUpdate'])->name('login.customization.update');
 
 });
 

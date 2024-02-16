@@ -84,9 +84,6 @@ class AdminController extends Controller
         }
     }
 
-    public function loginCustomization()
-    {
-        $customization = LoginCustomization::first();
-        return view('admin.editable.login_customization_form', compact('customization'));
-    }
+
+
 }

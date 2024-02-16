@@ -64,10 +64,20 @@
         <label for="login_box_color">
             Login Box Color
         </label>
-        <input type="text" id="login_box_color" name="login_box_color" value="{{$customization->login_box_color ?? ''}}" class="form-control" required>
+        <!-- <input type="text" id="login_box_color" name="login_box_color" value="{{$customization->login_box_color ?? ''}}" class="form-control" required> -->
+        <select id="login_box_color" name="login_box_color" class="form_control" style="width: 400px" required>
+            <option value="#4e73df" {{$customization->login_box_color == '#4e73df' ? 'selected' : ''}}>Dark Blue</option>
+            <option value="#1cc88a" {{$customization->login_box_color == '#1cc88a' ? 'selected' : ''}}>Success Green</option>
+            <option value="#36b9cc" {{$customization->login_box_color == '#36b9cc' ? 'selected' : ''}}>Light Blue</option>
+            <option value="#f6c23e" {{$customization->login_box_color == '#f6c23e' ? 'selected' : ''}}>Yellowish</option>
+            <option value="#e74a3b" {{$customization->login_box_color == '#e74a3b' ? 'selected' : ''}}>Redish</option>
+            <option value="#858796" {{$customization->login_box_color == '#858796' ? 'selected' : ''}}>Grey</option>
+            <option value="#f8f9fc" {{$customization->login_box_color == '#f8f9fc' ? 'selected' : ''}}>White</option>
+            <option value="#5a5c69" {{$customization->login_box_color == '#5a5c69' ? 'selected' : ''}}>Dark</option>
+        </select>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button id="saveButton" type="submit" class="btn btn-primary">Save</button>
 
 </form>
 
