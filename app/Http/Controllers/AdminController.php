@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use App\Models\Upload;
+use App\Models\LoginCustomization;
 
 class AdminController extends Controller
 {
@@ -81,5 +82,11 @@ class AdminController extends Controller
         } else {
             return redirect()->back()->with('error', 'Invalid Credentials');
         }
+    }
+
+    public function loginCustomization()
+    {
+        $customization = LoginCustomization::first();
+        return view('admin.editable.login_customization_form', compact('customization'));
     }
 }

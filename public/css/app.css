@@ -3,16 +3,42 @@ body{
 }
 
 .card.form-holder{
-    background-color: antiquewhite;
+    display: flex;
+    background-color: antiquewhite  ;
     border-radius: 20%;
     padding: 5%;
     margin-top: 20%;
     margin-bottom: 20%;
-}
+    box-shadow: 
+    0 8px 12px -1px rgba(0,0,0,0.5),
+    0 8px 12px -1px rgba(0,0,0,0.06),
+    0 15px 25px -1px rgba(255,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    }
+
+
 .card.form-holder h1{
+    letter-spacing: 2px;
+    font-size: 40px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 2px 4px rgba(0,0,0,2.5);
+    font-weight: bold;
     text-align: center;
-    font-family: fantasy;
-    
+    font-family: oswald;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #add8e6;  
+}
+
+.btn-custom{
+    background-color: aliceblue;
+    color: #fff;
+}
+
+.login-label{
+    font-size: 14px;
+    font-weight: bold;
+    color: darkgray;
 }
 .btn-primary{
     background-color: violet;
