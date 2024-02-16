@@ -5,8 +5,8 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-md-4 offset-md-4 ">
-            <div class="card form-holder">
+        <div class="col-md-4 offset-md-4 " >
+            <div class="card form-holder" style="background-color: {{ $customization->login_box_color ?? '#FAEBD7'}};">
                 <h1>Register</h1>
                 @if($errors->any())
                 <div class="alert alert-danger">

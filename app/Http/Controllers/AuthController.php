@@ -24,7 +24,8 @@ class AuthController extends Controller
 
     public function register_view()
     {
-        return view('auth.register');
+        $customization = LoginCustomization::first();
+        return view('auth.register', compact('customization'));
     }
     public function login(Request $request)
     {
