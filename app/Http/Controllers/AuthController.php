@@ -9,13 +9,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\Information;
+use App\Models\LoginCustomization;
+
 
 
 class AuthController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        $customization = LoginCustomization::first();
+
+        return view('auth.login', compact('customization'));
     }
 
     public function register_view()

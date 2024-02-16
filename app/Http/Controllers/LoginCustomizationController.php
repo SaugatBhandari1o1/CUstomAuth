@@ -13,6 +13,7 @@ class LoginCustomizationController extends Controller
     public function loginCustomization()
     {
         $customization = LoginCustomization::first();
+        // dd($customization);
         return view('admin.editable.login_customization_form', compact('customization'));
     }
 

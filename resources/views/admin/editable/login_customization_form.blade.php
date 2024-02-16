@@ -2,6 +2,7 @@
 
 @section('content-header')
 
+
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
     <!-- Sidebar Toggle (Topbar) -->
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -66,6 +67,7 @@
         </label>
         <!-- <input type="text" id="login_box_color" name="login_box_color" value="{{$customization->login_box_color ?? ''}}" class="form-control" required> -->
         <select id="login_box_color" name="login_box_color" class="form_control" style="width: 400px" required>
+            <option value="#FAEBD7" {{$customization->login_box_color == '#FAEBD7' ? 'selected' : ''}}>Default</option>
             <option value="#4e73df" {{$customization->login_box_color == '#4e73df' ? 'selected' : ''}}>Dark Blue</option>
             <option value="#1cc88a" {{$customization->login_box_color == '#1cc88a' ? 'selected' : ''}}>Success Green</option>
             <option value="#36b9cc" {{$customization->login_box_color == '#36b9cc' ? 'selected' : ''}}>Light Blue</option>
