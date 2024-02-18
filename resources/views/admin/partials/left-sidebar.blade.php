@@ -82,7 +82,8 @@ $current_route=request()->route()->getName();
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Screens:</h6>
                 <a class="collapse-item {{$current_route=='login.customization.form'?'active':''}}" href="{{route('login.customization.form')}}">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
+                <a class="collapse-item {{$current_route=='education-options.index'?'active':''}}" href="{{route('education-options.index')}}">Education Option</a>
+                <a class="collapse-item {{$current_route=='education-options.create'?'active':''}}" href="{{route('education-options.create')}}">Create Education Option</a>
                 <!-- <a class="collapse-item" href="forgot-password.html">Create</a> -->
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>

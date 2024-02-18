@@ -8,12 +8,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Upload;
+use App\Models\EducationOption;
+
 
 class InformationController extends Controller
 {
     public function create()
     {
-        return view("create");
+        $educationOptions = EducationOption::all();
+        return view('create', compact('educationOptions'));
+    }
+
+    public function toggleCreate(){
+        $createVisible = session('create_visible', true);
+        session(['create_visible'=>!$createVisible]);
+
+        return redirect()->back();
     }
     public function profile()
     {

@@ -23,10 +23,11 @@
                             <label for="education" class="form-label">Education</label>
                             <select name="education" id="education" class="form-select" required>
                                 <option value="" selected disabled>Select Education Level</option>
-                                <option value="master">Master</option>
-                                <option value="bachelor">Bachelor</option>
-                                <option value="high_school">High School</option>
-                                <option value="school">School</option>
+                                @foreach($educationOptions as $option)
+                                @if(!$option->hidden)
+                                <option value="{{$option->value}}">{{$option->label }}</option>
+                                @endif
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">

@@ -7,6 +7,7 @@ use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\LoginCustomizationController;
+use App\Http\Controllers\EducationOptionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,12 +49,16 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('admin/logout', [AdminController::class, 'a_logout'])->name('a_logout');
     // Route::get('admin/document', [UserController::class, 'document'])->name('users.document');
-    Route::get('admin/document', [UserController::class,'viewAllDocuments'])->name('admin.viewAllDocuments');
-    Route::get('admin/document/{document}', [UserController::class,'viewDocument'])->name('admin.viewDocument');
-    Route::get('/admin/login-customization', [LoginCustomizationController::class,'loginCustomization'])->name('login.customization.form');
-    Route::post('/admin/login-customization/updaet', [LoginCustomizationController::class,'loginCustomUpdate'])->name('login.customization.update');
-
+    Route::get('admin/document', [UserController::class, 'viewAllDocuments'])->name('admin.viewAllDocuments');
+    Route::get('admin/document/{document}', [UserController::class, 'viewDocument'])->name('admin.viewDocument');
+    Route::get('/admin/login-customization', [LoginCustomizationController::class, 'loginCustomization'])->name('login.customization.form');
+    Route::post('/admin/login-customization/updaet', [LoginCustomizationController::class, 'loginCustomUpdate'])->name('login.customization.update');
+    Route::resource('education-options', EducationOptionController::class);
+    Route::get('education-options/{id}/toggle', [EducationOptionController::class, 'show'])->name('education-options.toggle');
+    Route::get('education-options/{id}/delete', [EducationOptionController::class,'destroy'])->name('education-options.destroy');
 });
+
+
 
 
 
@@ -62,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/', function () {
     //     return view('home');
     // });
-    Route::get('/', [AuthController::class,'home'])->name('home');
+    Route::get('/', [AuthController::class, 'home'])->name('home');
 
     Route::get('home', [AuthController::class, 'home'])->name('home');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

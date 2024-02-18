@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4">
-            <div class="card form-holder" style="background-color: {{ $customization->login_box_color ?? '#FAEBD7'}};">
+            <div class="card form-holder" style="background-color: {{ $customization->login_box_color ?? '#FAEBD7'}}">
                 <h1> <i class="fa-solid fa-user"></i>Login</h1>
                 @if (Session::has('error'))
                 <p class="text-danger">{{ Session::get('error') }}</p>
