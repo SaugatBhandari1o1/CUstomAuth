@@ -56,6 +56,7 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::resource('education-options', EducationOptionController::class);
     Route::get('education-options/{id}/toggle', [EducationOptionController::class, 'show'])->name('education-options.toggle');
     Route::get('education-options/{id}/delete', [EducationOptionController::class,'destroy'])->name('education-options.destroy');
+    Route::get('admin/{id}/delete', [UserController::class,'delete'])->name('admin.users.delete');
 });
 
 

@@ -37,7 +37,7 @@ class EducationOptionController extends Controller
 
         $educationOption = EducationOption::create($validatedData);
 
-        toastr()->success('Education Option Added Successfully.');
+        flash()->addSuccess('Education Option Added Successfully.');
         return Redirect::route('education-options.create');
     }
 

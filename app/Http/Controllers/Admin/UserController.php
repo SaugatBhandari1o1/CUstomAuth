@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
 
 
 class UserController extends Controller
@@ -40,6 +41,14 @@ class UserController extends Controller
        $documents = Upload::wherenotNull('document')->with('user')->with('item')->get();
 
        return view('admin.users.document', compact('documents'));
+    }
+
+    public function delete(string $id){
+
+        $user=User::find($id);
+        $user->delete();
+        flash()->addWarning('User Deleted.');
+        return Redirect::route('users.index');
     }
 
     public function viewDocument($document){
