@@ -24,7 +24,11 @@
                         <td>{{$value}}</td>
                         @endforeach
                         <td>
+                            @if($user->is_admin ==1)
+                            <button class="btn btn-danger" disabled>Delete</button>
+                            @else
                             <a href="{{route('admin.users.delete',['id'=> $user->id]) }}" class="btn btn-danger">Delete</a>
+                            @endif
                         </td>
                     </tr>
                     @endforeach
