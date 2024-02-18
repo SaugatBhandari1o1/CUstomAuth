@@ -31,7 +31,8 @@
     </div>
 
     <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="hidden" name="hidden">
+        <input type="hidden" name="hidden" value="0">
+        <input type="checkbox" class="form-check-input" id="hidden" name="hidden" value="1" {{old('hidden') == 1 ?  'checked' : ''}}>
         <label class="form-check-label" for="hidden">Hidden</label>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
