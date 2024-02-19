@@ -87,7 +87,8 @@ $current_route=request()->route()->getName();
                 <!-- <a class="collapse-item" href="forgot-password.html">Create</a> -->
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
-                <a class="collapse-item" href="404.html">Create</a>
+                <a class="collapse-item {{$current_route=='vehicle-options.index'?'active':''}}" href="{{route('vehicle-options.index')}}">Create</a>
+                <a class="collapse-item {{$current_route=='vehicle-options.cc'?'active':''}}" href="{{route('vehicle-options.cc')}}">CC Section</a>
                 <a class="collapse-item" href="blank.html">Profile</a>
                 <a class="collapse-item" href="blank.html">Home</a>
             </div>

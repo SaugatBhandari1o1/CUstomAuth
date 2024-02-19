@@ -8,6 +8,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\LoginCustomizationController;
 use App\Http\Controllers\EducationOptionController;
+use App\Http\Controllers\Admin\VehicleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,17 @@ Route::group(['middleware' => 'admin_auth'], function () {
     Route::get('education-options/{id}/toggle', [EducationOptionController::class, 'show'])->name('education-options.toggle');
     Route::get('education-options/{id}/delete', [EducationOptionController::class,'destroy'])->name('education-options.destroy');
     Route::get('admin/{id}/delete', [UserController::class,'delete'])->name('admin.users.delete');
+
+
+    Route::get('vehicle-options', [VehicleController::class,'index'])->name('vehicle-options.index');
+    Route::get('vehicle-options/create', [VehicleController::class,'cc'])->name('vehicle-options.cc');
+    Route::post('vehicle-options/store', [VehicleController::class,'store'])->name('vehicle-options.store');
+    Route::post('vehicle-options/create', [VehicleController::class,'create'])->name('vehicle-options.create');
+
+    // Route::resource('vehicle-options', VehicleController::class);
+    // Route::post('vehicle-options', [VehicleController::class,'create'])->name('vehicle-option.create');
+    // Route::get('vehicle-options/create', [VehicleController::class, 'create'])->name('vehicle-options.create');
+    // Route::get('vehicle-options/{id}/', [VehicleController::class,''])->name('');
 });
 
 
@@ -83,4 +96,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('download/{uid}', [InformationController::class, 'download'])->name('download');
+
+    Route::get('vehicleComponent', [InformationController::class,'vehicleComponent'])->name('vehicleComponent');
+    // Route::get('vehicle-component', VehicleComponent::class)->name('vehicleComponent');
 });

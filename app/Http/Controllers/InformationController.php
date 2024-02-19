@@ -19,6 +19,10 @@ class InformationController extends Controller
         return view('create', compact('educationOptions'));
     }
 
+    public function vehicleComponent(){
+        return view('users.biodata');
+    }
+
     public function toggleCreate(){
         $createVisible = session('create_visible', true);
         session(['create_visible'=>!$createVisible]);

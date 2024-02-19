@@ -33,42 +33,26 @@ class EducationOptionController extends Controller
      */
     public function store(Request $request)
     {
-        // $validatedData = $request->validate([
-        //     'value' => 'required|unique:education-options',
-        //     'label'=> 'required',
-        //     'hidden' =>[
-        //         'nullable',
-        //     Rule::in(['true','false', '0','1',true, false]), 
-        // ],
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'value' => 'required|unique:education-options',
+            'label' => 'required',
+            'hidden' => [
+                'nullable',
+                Rule::in(['true', 'false', '0', '1', true, false]),
+            ],
+        ]);
 
-        // $educationOption = EducationOption::create($validatedData);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
 
-        // flash()->addSuccess('Education Option Added Successfully.');
-        // return Redirect::route('education-options.create');
+            dd($errors->all());
+        }
 
+        $validatedData = $validator->validated();
+        $educationOption = EducationOption::create($validatedData);
 
-            $validator = Validator::make($request->all(),[
-                'value' =>'required|unique:education-options',
-                'label' => 'required',
-                'hidden' => [
-                    'nullable',
-                    Rule::in(['true','false','0','1',true,false]),
-                ],
-            ]);
-
-            if ($validator->fails()){
-                $errors = $validator->errors();
-                
-                dd($errors->all());
-            }
-
-            $validatedData = $validator->validated();
-            $educationOption = EducationOption::create($validatedData);
-
-            flash()->addSuccess('Education Option Added Successfully.');
-            return Redirect::route('education-options.create');
-
+        flash()->addSuccess('Education Option Added Successfully.');
+        return Redirect::route('education-options.create');
     }
 
     /**
