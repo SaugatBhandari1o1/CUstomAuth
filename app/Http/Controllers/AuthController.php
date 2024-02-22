@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\Models\Information;
 use App\Models\LoginCustomization;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 
 
 
@@ -58,7 +60,7 @@ class AuthController extends Controller
 
         }
         
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -66,12 +68,20 @@ class AuthController extends Controller
             
         ]);
 
-        //Login
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('home');
-        }
+        event(new Registered($user));
 
-        return redirect('register')->withError('Error');
+        Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+        // $user->sendEmailVerificationNotification();
+
+        // return redirect()->route('verification.notice');
+        //Login
+        // if (Auth::attempt($request->only('email', 'password'))) {
+        //     return redirect('home');
+        // }
+
+        // return redirect('register')->withError('Error');
     }
 
     public function home()

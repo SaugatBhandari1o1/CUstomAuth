@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Support\Facades\Facade;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -9,7 +9,8 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\LoginCustomizationController;
 use App\Http\Controllers\EducationOptionController;
 use App\Http\Controllers\Admin\VehicleController;
-
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +35,27 @@ Route::group(['middleware' => 'guest'], function () {
         return view('auth.login');
     });
 
-    // Route::get('admin_login' , [AdminController::class,'index'])->name('admin_login');
-    // Route::post('admin_login', [AdminController::class,'admin_login']);
+
+    Route::get('/email/verify', function(){
+        return view('auth.verify-email');
+    })->middleware('auth')->name('verification.notice');
+
+    Route::get('/email/verify/{id}/{hash}', function(EmailVerificationRequest $request){
+        $request->fulfill();
+
+        return redirect('home');
+    })->middleware(['auth','signed'])->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request){
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message','Verification Link has been sent');
+    })->middleware(['auth','throttle:6,1'])->name('verification.send');
+
 
     Route::get('register', [AuthController::class, 'register_view'])->name('register');
     Route::post('register', [AuthController::class, 'register'])->middleware('throttle:2,1');
 });
-
 
 
 
@@ -72,7 +87,9 @@ Route::group(['middleware' => 'admin_auth'], function () {
     // Route::get('vehicle-options/{id}/', [VehicleController::class,''])->name('');
 });
 
-
+Route::get('/email/verify',function(){
+    return view ('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 
 
@@ -81,6 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/', function () {
     //     return view('home');
     // });
+
+    
     Route::get('/', [AuthController::class, 'home'])->name('home');
 
     Route::get('home', [AuthController::class, 'home'])->name('home');

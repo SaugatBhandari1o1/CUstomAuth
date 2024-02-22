@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('uploads', function (Blueprint $table) {
-            $table->timestamps();
-        });
+        // Schema::table('uploads', function (Blueprint $table) {
+        //     $table->timestamps();
+        // });
             
     }
 

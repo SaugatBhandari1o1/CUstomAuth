@@ -11,9 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::table('uploads', function (Blueprint $table){
-        //     $table->binary('document')->nullable();
-        // });
+        
+            Schema::create('education_options', function (Blueprint $table) {
+                $table->id();
+                $table->string('value');
+                $table->string('label');
+                $table->boolean('hidden')->default(false);
+                $table->timestamps();
+            });
     }
 
     /**
@@ -21,8 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Schema::table('uploads', function(Blueprint $table){
-        //     $table->dropColumn('document');
-        // });
+        //
     }
 };

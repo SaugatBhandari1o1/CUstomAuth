@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('login_customizations', function (Blueprint $table) {
+        // Schema::create('login_customizations', function (Blueprint $table) {
 
-            $table->id();
-            $table->string('login_box_color')->nullable();
-            $table->string('background_image')->nullable();
-            $table->string('logo_image')->nullable();
-            $table->string('text_color')->nullable();
-            $table->string('font_family')->nullable();
-            $table->text('additional_styles')->nullable();
-            $table->timestamps();
-        });
+        //     $table->id();
+        //     $table->string('login_box_color')->nullable();
+        //     $table->string('background_image')->nullable();
+        //     $table->string('logo_image')->nullable();
+        //     $table->string('text_color')->nullable();
+        //     $table->string('font_family')->nullable();
+        //     $table->text('additional_styles')->nullable();
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -29,7 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('login_customizations');
+        // Schema::dropIfExists('login_customizations');
 
     }
 };
