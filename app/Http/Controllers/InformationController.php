@@ -7,6 +7,7 @@ use App\Models\Information;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\cc;
 use App\Models\Upload;
 use App\Models\EducationOption;
 
@@ -20,9 +21,11 @@ class InformationController extends Controller
     }
 
     public function vehicleComponent(){
-        return view('users.biodata');
+        $cc = cc::all();
+        return view('users.biodata', compact('cc'));
     }
 
+    public function vehicleReg(Request $request){}
     public function toggleCreate(){
         $createVisible = session('create_visible', true);
         session(['create_visible'=>!$createVisible]);

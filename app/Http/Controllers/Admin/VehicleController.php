@@ -20,9 +20,12 @@ class VehicleController extends Controller
     }
 
     public function cc(){
-        $existingVehicleTypes = VehicleCC::pluck('vehicle_type')->toArray();
-        $vehicleCC = VehicleCC::all();
-        return view('admin.control.cc', compact('existingVehicleTypes','vehicleCC'));
+        // $existingVehicleTypes = VehicleCC::pluck('vehicle_type')->toArray();
+        // $vehicleCC = VehicleCC::all();
+        // return view('admin.control.cc', compact('existingVehicleTypes','vehicleCC'));
+
+        $existingVehicleTypes = VehicleCC::all();
+        return view('admin.control.cc',compact('existingVehicleTypes'));
     }
 
     public function store(Request $request)
@@ -49,9 +52,9 @@ class VehicleController extends Controller
             'cc' => 'required|unique:cc,cc',
         ]);
 
-        $id = $request->vehicle_type_select;
+        $vehicle_type_id = $request->vehicle_type_select;
 
-        $vehicleType = VehicleCC::findOrFail($id);
+        $vehicleType = vehicleCC::findOrFail($vehicle_type_id);
 
         CC::create([
             'cc' => $request->cc,
@@ -60,6 +63,6 @@ class VehicleController extends Controller
 
 
         // return redirect()->route('vehicle-options.index')->with('success','CC data has been added');
-        return redirect()->route('vehicle-options.index')->with('success', 'CC data has been added');
+        return redirect()->route('vehicle-options.cc')->with('success', 'CC data has been added');
     }
 }

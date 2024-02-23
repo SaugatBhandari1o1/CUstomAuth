@@ -11,7 +11,7 @@
                         <h3 class="card-title text-light fw-bold">Biodata</h3>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('vehicleComponent.reg')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
@@ -21,24 +21,16 @@
                                 <label for="education" class="form-label">Choose Your Vehicle type</label>
                                 <select wire:model="vehicleType" class="form-select" required>
                                     <option value="" selected disabled>Select</option>
-                                    <option value="bike" id="bike">Bike</option>
-                                    <option value="car" id="car">Car</option>
-                                    <option value="jeep" id="jeep">Jeep</option>
-                                    <option value="heavy" id="heavy">Heavy</option>
-                                    <option value="bus" id="bus">Bus</option>
+                                    @foreach($vehicleCCs as $type)
+                                        <option value="{{$type->id}}">{{$type->label}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="cc" class="form-label">Select The CC</label>
                                 <select name="cc" id="cc" class="form-select" required>
                                     <option value="" selected disabled>Select</option>
-                                    <option value="125" id="125">125CC</option>
-                                    <option value="150" id="150">150CC</option>
-                                    <option value="250" id="250">250CC</option>
-                                    <option value="350" id="350">350CC</option>
-                                    <option value="450" id="450">450CC</option>
-
-
                                 </select>
                             </div>
                         </form>
@@ -48,5 +40,34 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#vehicle_type').change(function(){
+            var vehicleLabel = $(this).val();
+            console.log('Selected vehicle label:', vehicleLabel); // Add this line
+
+            if(vehicleLabel){
+                $.ajax({
+                    url : '/getCCs',
+                    type: 'GET',
+                    data: { vehicle_label: vehicleLabel},
+                    success: function(response){
+                        $('#cc').empty();
+                        console.log('Response:', response); // Add this line
+
+                        $.each(response ,function(key, value ){
+                            $('#cc').append('<option value="' + value.id + '">' + value.cc + '</option>');
+                        });
+                    }
+                });
+            } else {
+                $('#cc').empty();
+            }
+        });
+    });
+</script>
 
 @endsection

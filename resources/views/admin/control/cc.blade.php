@@ -10,7 +10,7 @@
         <select class="form-select form-control" id="vehicle_type_select" name="vehicle_type_select" required>
             <option value="" selected disabled>Select Vehicle Type</option>
             @foreach($existingVehicleTypes as $type)
-            <option value="{{$type}}">{{$type}}</option>
+            <option value="{{$type->id}}">{{$type->label}}</option>
             @endforeach
         </select>
     </div>

@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Facade;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VehicleCCController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\InformationController;
@@ -116,6 +117,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('download/{uid}', [InformationController::class, 'download'])->name('download');
 
-    Route::get('vehicleComponent', [InformationController::class,'vehicleComponent'])->name('vehicleComponent');
+    
+    Route::get('vehicleComponent',[VehicleCCController::class, 'index'])->name('vehicleComponent');
+    Route::post('vehicleComponnet', [VehicleCCController::class,'create'])->name('vehicleComponent.reg');
+    Route::get('/getCC', [VehicleCCController::class,'getCCs']);
+
+    // Route::get('vehicleComponent', [InformationController::class,'vehicleComponent'])->name('vehicleComponent');
+    // Route::post('vehicleComponnet', [InformationController::class,'vehicleReg'])->name('vehicleComponent.reg');
     // Route::get('vehicle-component', VehicleComponent::class)->name('vehicleComponent');
 });
