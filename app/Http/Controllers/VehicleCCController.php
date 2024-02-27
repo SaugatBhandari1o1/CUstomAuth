@@ -10,22 +10,29 @@ class VehicleCCController extends Controller
 {
     public function index()
     {
-        $vehicleCCs = vehicleCC::all();
-        return view('users.biodata', compact('vehicleCCs'));
+        // $vehicleCCs = vehicleCC::all();
+        // return view('users.biodata', compact('vehicleCCs'));
+
+        $data['vehicleCCs'] = vehicleCC::get(["label","id"]);
+        return view('users.biodata', $data);
     }
 
     public function getCCs(Request $request)
     {
-        $vehicleLabel = $request->input('label');
-        $vehicleCC = vehicleCC::where('label', $vehicleLabel)->first();
-        // $ccs = CC::where('vehicle_cc_id', $vehicleCC->id)->get();
+        // $vehicleLabel = $request->input('label');
+        // $vehicleCC = vehicleCC::where('label', $vehicleLabel)->first();
+        // // $ccs = CC::where('vehicle_cc_id', $vehicleCC->id)->get();
 
-        if (!$vehicleCC) {
-            return response()->json(['error', 'Vehicle type not found'], 404);
-        }
-        $ccs = $vehicleCC->ccs;
+        // if (!$vehicleCC) {
+        //     return response()->json(['error', 'Vehicle type not found'], 404);
+        // }
+        // $ccs = $vehicleCC->ccs;
 
-        return response()->json($ccs);
+        // return response()->json($ccs);
+
+        $data['ccs'] = CC::where("vehicle_cc_id",$request->vehicle_cc_id)->get(["cc","id"]);
+        return response()->json($data);
+        
     }
     public function store(Request $request)
     {
