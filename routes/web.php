@@ -120,7 +120,7 @@ Route::group(['middleware' => 'auth'], function () {
     
     Route::get('vehicleComponent',[VehicleCCController::class, 'index'])->name('vehicleComponent');
     Route::post('vehicleComponnet', [VehicleCCController::class,'create'])->name('vehicleComponent.reg');
-    Route::get('/getCC', [VehicleCCController::class,'getCCs']);
+    Route::post('/getCCs', [VehicleCCController::class,'getCCs']);
 
     // Route::get('vehicleComponent', [InformationController::class,'vehicleComponent'])->name('vehicleComponent');
     // Route::post('vehicleComponnet', [InformationController::class,'vehicleReg'])->name('vehicleComponent.reg');
